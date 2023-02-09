@@ -1,0 +1,15 @@
+package com.ey.apiGateway.ApiGatewayForEcommerce;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+
+@SpringBootApplication
+@EnableEurekaClient
+public class ApiGatewayForEcommerceApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(ApiGatewayForEcommerceApplication.class, args);
+	}
+
+}

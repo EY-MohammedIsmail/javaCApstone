@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>User</title>
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/css/animate.css">
+    
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/css/magnific-popup.css">
+
+    <link rel="stylesheet" href="/css/aos.css">
+
+    <link rel="stylesheet" href="/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="/css/jquery.timepicker.css">
+
+    
+    <link rel="stylesheet" href="/css/flaticon.css">
+    <link rel="stylesheet" href="/css/icomoon.css">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  
+<body>
+<!-- <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="index.html">TEAM-B</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	          <li class="nav-item"><a th:href="@{/user/}" class="nav-link">Home</a></li>
+	          <li class="nav-item dropdown active">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catalog</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown04">
+              	<a class="dropdown-item" href="shop.html">Shop</a>
+                <a class="dropdown-item" href="product-single.html">Single Product</a>
+                <a class="dropdown-item" href="cart.html">Cart</a>
+                <a class="dropdown-item" href="checkout.html">Checkout</a>
+              </div>
+            </li>
+            	<li class="nav-item"><a th:href="@{/user/addTocart}" class="nav-link">Cart</a></li>
+	          
+	          <li class="nav-item"><a href="/logout" class="nav-link">Log Out</a></li>
+	          
+
+	        </ul>
+	      </div>
+	    </div>
+	  </nav> -->
+
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="index.html">TEAM-B</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	          <li class="nav-item"><a th:href="@{/user/}" class="nav-link">Home</a></li>
+	          <!-- <li class="nav-item dropdown active">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catalog</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown04">
+              	<a class="dropdown-item" href="shop.html">Shop</a>
+                <a class="dropdown-item" href="product-single.html">Single Product</a>
+                <a class="dropdown-item" href="cart.html">Cart</a>
+                <a class="dropdown-item" href="checkout.html">Checkout</a>
+              </div>
+            </li> -->
+            	<li class="nav-item"><a th:href="@{/user/addTocart}" class="nav-link">Cart</a></li>
+	          
+	          <li class="nav-item"><a href="/logout" class="nav-link">Log Out</a></li>
+	          
+
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+
+<div class="hero-wrap hero-bread" style="background-image: url('/images/bg_6.jpg');">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+          	<!-- <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Shop</span></p> -->
+            <h1 class="mb-0 bread">My WishList</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <section class="ftco-section ftco-cart">
+			<div class="container">
+				<div class="row">
+    			<div class="col-md-12 ftco-animate">
+    				<div class="cart-list">
+    				<a th:href="@{/user/clearCart}" class="btn btn-primary py-3 px-4">Clear Cart</a>
+	    				<table class="table">
+						    <thead class="thead-primary">
+						      <tr class="text-center">
+						        <th>&nbsp;</th>
+						        <th>&nbsp;</th>
+						        <th>Product Name</th>
+						        <th>Product Price</th>
+						        <th>Description</th>
+						        <th>Total</th>
+						      </tr>
+						    </thead>
+						    <tbody>
+						      <tr class="text-center" th:each="product:${products}">
+						        <td class="product-remove"><a th:href="@{/user/deleteUserOrder/{orderid}(orderid=${product.orderId})}" class="btn ">Delete</a></td>
+						        
+						        <td class="image-prod"><div class="img" style="background-image:url(https://th.bing.com/th/id/R.1ae823e85399db640e8ba887dab4d04a?rik=Bcxa2oHpx4X6dA&riu=http%3a%2f%2fwww.ilounge.com%2fwp-content%2fuploads%2f2019%2f03%2fMacbook-Air-2018.jpeg&ehk=9Eyu2JqD%2bnEQjeJEr2oBpVGoz8tssNrpaECZqVx9d%2bA%3d&risl=&pid=ImgRaw&r=0);"></div></td>
+						        
+						        <td class="product-name">
+							        	<h3><a th:text="${product.product.productName}"></a></h3>	
+						        	
+						        </td>
+						        
+						        <td class="price" ><a th:text="${product.product.productPrice}"></a></td>
+						        
+						        <td class="quantity">
+						        	<div class="input-group mb-3">
+					             	<input type="text"  name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
+					          	</div>
+					          </td>
+						        
+						        <td class="total"><a th:text="${(product.product.productPrice)}"></a></td>
+						      </tr><!-- END TR-->
+
+						     <!--  <tr class="text-center">
+						        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
+						        
+						        <td class="image-prod"><div class="img" style="background-image:url(images/product-4.jpg);"></div></td>
+						        
+						        <td class="product-name">
+						        	<h3>Nike Free RN 2019 iD</h3>
+						        	<p>Far far away, behind the word mountains, far from the countries</p>
+						        </td>
+						        
+						        <td class="price">$15.70</td>
+						        
+						        <td class="quantity">
+						        	<div class="input-group mb-3">
+					             	<input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
+					          	</div>
+					          </td>
+						        
+						        <td class="total">$15.70</td>
+						      </tr> --><!-- END TR-->
+						    </tbody>
+						  </table>
+					  </div>
+    			</div>
+    		</div>
+    		<div class="row justify-content-start">
+    			<div class="col col-lg-5 col-md-6 mt-5 cart-wrap ftco-animate">
+    				<div class="cart-total mb-3">
+    					<h3>Cart Total</h3>
+    					<p class="d-flex">
+    					
+    					<hr>
+    					<p class="d-flex total-price">
+    						<span>Total</span>
+    						<span><a th:text="${total}"></a></span>
+    					</p>
+    				</div>
+    				<p class="text-center"><a th:href="@{/bill/billGenerate}" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+    			</div>
+    		</div>
+			</div>
+			
+		</section>
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">TEAM B</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" href="#">Home</a></li>
+					
+
+				</ul>
+				<ul class="nav navbar-nav navbar-right ml-auto">
+      <li class="nav-item">
+                <a class="nav-link" th:href="@{/user/addTocart}">
+                  <i class="fa fa-cart-plus"></i>Cart
+                </a>
+            </li> 
+      <li class="nav-item"><a class="nav-link" href="/logout"><i class="glyphicon glyphicon-log-in"></i> LogOut</a></li>
+    </ul>
+
+			</div>
+		</div>
+	</nav>
+ -->
+
+<!-- 
+<div class="container">
+
+<h1 align="center">Product List</h1><hr><br>
+
+<a th:href="@{/user/}" class="btn btn-success">Home</a>
+<br>
+
+<a th:href="@{/user/clearCart}" class="btn btn-danger">Clear Cart</a>
+<br><hr>
+<table class="table table-bordered table-hover" width="100%" cellpadding="10" cellspacing="0">
+
+<tr bgcolor="cyan">
+<th>OrderId</th>
+<th>productName</th>
+<th>productPrice </th>
+<th>productDescription</th>
+<th>Action</th>
+
+</tr>
+
+
+<tr th:each="product:${products}">
+<th th:text="${product.orderId}"></th>
+<th th:text=" ${product.product.productName}"></th>
+<th th:text=" ${product.product.productPrice}"></th>
+<th th:text=" ${product.product.productDescription}"></th>
+<th><a th:href="@{/user/deleteUserOrder/{orderid}(orderid=${product.orderId})}" class="btn btn-danger">Delete</a>
+</th>
+
+
+</tr>
+
+</table>
+<br><hr>
+<h1 th:text="${total}"></h1>
+
+<th><a th:href="@{/user/billGenerate}" class="btn btn-danger">Bill</a>
+</div> -->
+<footer class="ftco-footer ftco-section">
+      <div class="container">
+      	<div class="row">
+      		
+      	</div>
+        <div class="row mb-5">
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Niswakash</h2>
+              <p>Shop more</p>
+              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4 ml-md-5">
+              <h2 class="ftco-heading-2">Menu</h2>
+              <ul class="list-unstyled">
+                <li><a href="#" class="py-2 d-block">Shop</a></li>
+                <li><a href="#" class="py-2 d-block">About</a></li>
+                
+          
+              </ul>
+            </div>
+          </div>
+          <!-- <div class="col-md-4">
+             <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Help</h2>
+              <div class="d-flex">
+	              <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
+	                <li><a href="#" class="py-2 d-block">Shipping Information</a></li>
+	                <li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a></li>
+	                <li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
+	                <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
+	              </ul>
+	              <ul class="list-unstyled">
+	                <li><a href="#" class="py-2 d-block">FAQs</a></li>
+	                <li><a href="#" class="py-2 d-block">Contact</a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div> -->
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+            	<h2 class="ftco-heading-2">Have a Question?</h2>
+            	<div class="block-23 mb-3">
+	              <ul>
+	                
+	                <li><a href="#"><span class="glyphicon glyphicon-earphone"></span><span class="text">+91 9823458621</span></a></li>
+	                <li><a href="#"><span class="text">infoNiswakash@gmail.com</span></a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Shopping @ Niswakash
+						  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="/js/popper.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/jquery.easing.1.3.js"></script>
+  <script src="/js/jquery.waypoints.min.js"></script>
+  <script src="/js/jquery.stellar.min.js"></script>
+  <script src="/js/owl.carousel.min.js"></script>
+  <script src="/js/jquery.magnific-popup.min.js"></script>
+  <script src="/js/aos.js"></script>
+  <script src="/js/jquery.animateNumber.min.js"></script>
+  <script src="/js/bootstrap-datepicker.js"></script>
+  <script src="/js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="/js/google-map.js"></script>
+  <script src="/js/main.js"></script>
+
+
+
+
+
+</body>
+</html>

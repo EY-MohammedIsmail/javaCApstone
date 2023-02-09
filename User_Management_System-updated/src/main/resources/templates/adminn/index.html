@@ -1,0 +1,412 @@
+<!-- <!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User</title>
+CSS only
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<body bgcolor="lightblue">
+
+
+
+<div class="container">
+<a class="btn btn-danger" href="/logout">LogOut</a>
+
+<h1 align="center">Product List</h1><hr><br>
+
+
+
+
+
+
+<a th:href="@{/admin/show}" class="btn btn-dark">ADD</a><hr><nr>
+<table class="table table-bordered table-hover" width="100%" cellpadding="10" cellspacing="0">
+
+
+
+<tr bgcolor="cyan">
+<th>productId</th>
+<th>productName</th>
+<th>productPrice </th>
+<th>productQuantity</th>
+<th>productDescription</th>
+<th>Action</th>
+
+
+
+
+
+</tr>
+
+
+
+
+
+<tr th:each="product:${products}">
+
+
+
+<th th:text="${product.productId}"></th>
+<th th:text="${product.productName}"></th>
+<th th:text="${product.productPrice}"></th>
+<th th:text="${product.productQuantity}"></th>
+<th th:text="${product.productDescription}"></th>
+<th><a th:href="@{/admin/deleteProduct/{productId}(productId=${product.productId})}" class="btn btn-danger">Delete</a>
+</th>
+<th><a th:href="@{/admin/UpdateForm/{id}(id=${product.productId})}" class="btn btn-danger">Update</a>
+</th>
+
+
+
+
+</tr>
+
+
+
+</table>
+<br>
+<a th:href="@{/admin/csv}" class="btn btn-danger">Bulk Upload(CSV )</a>
+<br><hr>
+
+<table class="table table-bordered table-hover" width="100%" cellpadding="10" cellspacing="0">
+
+
+
+
+
+<tr bgcolor="cyan">
+<th>User Id</th>
+<th>User Name</th>
+<th>User EmailId</th>
+<th>User Address</th>
+<th>Role</th>
+<th>Action</th>
+	
+
+</tr>
+
+
+
+
+
+<tr th:each="users:${userList}">
+
+
+
+<th th:text="${users.id}"></th>
+<th th:text="${users.fullName}"></th>
+<th th:text="${users.email}"></th>
+<th th:text="${users.address}"></th>
+<th th:text="${users.role}"></th>
+<th><a th:href="@{/admin/deleteUser/{userId}(userId=${users.id})}" class="btn btn-danger">Delete</a>
+</th>
+<th><a th:href="@{/admin/UpdateUserForm/{id}(id=${users.id})}" class="btn btn-danger">Update</a>
+</th>
+
+
+
+
+
+
+</tr>
+
+
+
+</table>
+
+
+
+
+</div>
+</body>
+</html> -->
+
+
+<!-- <!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Admin</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+Latest compiled JavaScript
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+ .size{
+    width: 1000px;
+    padding-left:400px;
+    padding-right: 170px;
+    }
+</style>
+
+</head>
+<body background="/img/bg.jpg">
+
+
+<nav class="navbar navbar-expand-lg bg-transparent">
+    <div class="container-fluid">
+			<a class="navbar-brand" href="#">
+			
+			<img src="/img/logo2.png" width="100" alt="" class="d-inline-block align-middle mr-2">
+			</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/admin/">Home</a>   
+      </ul>
+      <ul class="nav justify-content-end">
+      <li class="nav-item">
+      <div class="container-fluid">
+    <a class="navbar-brand" href="/logout">Logout</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    </div>
+    </ul>
+  </div>
+  </div>
+</nav>
+
+
+<div class="size">
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false" align="center">
+  <div class="carousel-indicators" align="center">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner" >
+    <div class="carousel-item active" style="width: 25rem;">
+      <img th:src="@{/img/inventory.png}" src="../static/img/inventory.png" class="d-block w-100" alt="..." >
+      <div class="carousel-caption d-none d-md-block">
+      	 <p style="color: white;"><b>CRUD on Products</b></p>
+        <p style="color: white;"><b>As an admin you can perform crud operations on products</b></p>
+      </div>
+    </div>
+    <div class="carousel-item" style="width: 25rem;">
+      <img th:src="@{/img/man.png}" src="../static/img/man.png" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+         <p style="color: black;"><b>CRUD on Users</b></p>
+        <p  style="color: black;"><b>As an admin you can perform crud operations on Users</b></p>
+      </div>
+    </div>
+    <div class="carousel-item" style="width:25rem;" >
+      <img th:src="@{/img/package.png}" src="../static/img/package.png" class="d-block w-100" alt="..." >
+      <div class="carousel-caption d-none d-md-block">
+        <p style="color: white;"><b>Bulk Upload</b></p>
+        <p style="color: white;"><b>You can upload a CSV File</b></p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+</div>
+
+<br></br>
+
+<div class="row" style="padding-top: 20px; padding-bottom: 20px;padding-left: 80px">
+
+<div class="col-lg-4" >
+<div class="card" style="width: 18rem;">
+  <img th:src="@{/img/package.png}" src="../static/img/package.png" class="card-img-top" alt="...">
+
+  <div class="card-body">
+    <h5 class="card-title">Products</h5>
+    <h6 class="card-title">Add,Update,View,Delete<br>products in the inventory</h6>
+    <p class="card-text"></p>
+    <a href="/admin/product" class="btn btn-primary">Go To Products</a>
+  </div>
+</div>
+</div>
+
+<div class="col-lg-4" >
+<div class="card" style="width: 18rem;">
+  <img th:src="@{/img/man.png}" src="../static/img/man.png" class="card-img-top" alt="...">
+
+  <div class="card-body">
+    <h5 class="card-title">Users</h5>
+    <h6 class="card-title">Add,Update,View,Delete<br>users of this app</h6>
+    <p class="card-text"></p>
+    <a href="/admin/user" class="btn btn-primary">Go To Users</a>
+  </div>
+</div>
+</div>
+
+<div class="col-lg-4" >
+<div class="card" style="width: 18rem;">
+  <img th:src="@{/img/inventory.png}" src="../static/img/inventory.png" class="card-img-top" alt="...">
+
+  <div class="card-body">
+    <h5 class="card-title">Bulk Uploads</h5>
+    <h6 class="card-title">Suffering with Bulk Products??<br>It is done easy Here!</h6>
+    <p class="card-text"></p>
+    <a th:href="@{/admin/csv}" class="btn btn-primary">Go To Bulk Uploads</a>
+  </div>
+</div>
+</div>
+</div>
+
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Admin</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+ .size{
+    width: 1000px;
+    padding-left:400px;
+    padding-right: 170px;
+    }
+</style>
+
+</head>
+<body background="/img/bg.jpg">
+
+
+<nav class="navbar navbar-expand-lg bg-transparent">
+    <div class="container-fluid">
+			<a class="navbar-brand" href="#">
+			
+			<img src="/img/logo2.png" width="100" alt="" class="d-inline-block align-middle mr-2">
+			</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/admin/">Home</a>   
+      </ul>
+      <ul class="nav justify-content-end">
+      <li class="nav-item">
+      <div class="container-fluid">
+    <a class="navbar-brand" href="/logout">Logout</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    </div>
+    </ul>
+  </div>
+  </div>
+</nav>
+
+
+<div class="size">
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false" align="center">
+  <div class="carousel-indicators" align="center">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner" >
+    <div class="carousel-item active" style="width: 25rem;">
+      <img th:src="@{/img/inventory.png}" src="../static/img/inventory.png" class="d-block w-100" alt="..." >
+      <div class="carousel-caption d-none d-md-block">
+      	 <p style="color: white;"><b>CRUD on Products</b></p>
+        <p style="color: white;"><b>As an admin you can perform crud operations on products</b></p>
+      </div>
+    </div>
+    <div class="carousel-item" style="width: 25rem;">
+      <img th:src="@{/img/man.png}" src="../static/img/man.png" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+         <p style="color: black;"><b>CRUD on Users</b></p>
+        <p  style="color: black;"><b>As an admin you can perform crud operations on Users</b></p>
+      </div>
+    </div>
+    <div class="carousel-item" style="width:25rem;" >
+      <img th:src="@{/img/package.png}" src="../static/img/package.png" class="d-block w-100" alt="..." >
+      <div class="carousel-caption d-none d-md-block">
+        <p style="color: white;"><b>Bulk Upload</b></p>
+        <p style="color: white;"><b>You can upload a CSV File</b></p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+</div>
+
+<br></br>
+
+<div class="row" style="padding-top: 20px; padding-bottom: 20px;padding-left: 80px">
+
+<div class="col-lg-4" >
+<div class="card" style="width: 18rem;">
+  <img th:src="@{/img/package.png}" src="../static/img/package.png" class="card-img-top" alt="...">
+
+  <div class="card-body">
+    <h5 class="card-title">Products</h5>
+    <h6 class="card-title">Add,Update,View,Delete<br>products in the inventory</h6>
+    <p class="card-text"></p>
+    <a href="/admin/product" class="btn btn-primary">Go To Products</a>
+  </div>
+</div>
+</div>
+
+<div class="col-lg-4" >
+<div class="card" style="width: 18rem;">
+  <img th:src="@{/img/man.png}" src="../static/img/man.png" class="card-img-top" alt="...">
+
+  <div class="card-body">
+    <h5 class="card-title">Users</h5>
+    <h6 class="card-title">Add,Update,View,Delete<br>users of this app</h6>
+    <p class="card-text"></p>
+    <a href="/admin/user" class="btn btn-primary">Go To Users</a>
+  </div>
+</div>
+</div>
+
+<div class="col-lg-4" >
+<div class="card" style="width: 18rem;">
+  <img th:src="@{/img/inventory.png}" src="../static/img/inventory.png" class="card-img-top" alt="...">
+
+  <div class="card-body">
+    <h5 class="card-title">Bulk Uploads</h5>
+    <h6 class="card-title">Suffering with Bulk Products??<br>It is done easy Here!</h6>
+    <p class="card-text"></p>
+    <a th:href="@{/admin/csv}" class="btn btn-primary">Go To Bulk Uploads</a>
+  </div>
+</div>
+</div>
+</div>
+
+<nav aria-label="Page navigation example">
+ <ul class="pagination justify-content-center">
+    <li class="page-item">
+      <a class="page-link" href="/logout">Prev</a>
+    </li>
+
+      <li class="page-item"><a class="page-link" href="/admin/product">1</a></li>
+      <li class="page-item"><a class="page-link" href="/admin/user">2</a></li>
+      <li class="page-item"><a class="page-link" href="/admin/csv">3</a></li>
+    
+  </ul>
+</nav>
+
+</body>
+</html>

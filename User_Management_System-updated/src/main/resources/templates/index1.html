@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" >
+<head>
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User</title>
+<!-- CSS only -->
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+ 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/css/animate.css">
+    
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/css/magnific-popup.css">
+
+    <link rel="stylesheet" href="/css/aos.css">
+
+    <link rel="stylesheet" href="/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="/css/jquery.timepicker.css">
+
+    
+    <link rel="stylesheet" href="/css/flaticon.css">
+    <link rel="stylesheet" href="/css/icomoon.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">TEAM B</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" href="#">Home</a></li>
+					
+
+				</ul>
+				<ul class="nav navbar-nav navbar-right ml-auto">
+      <li class="nav-item">
+                <a class="nav-link" th:href="@{/user/addTocart}">
+                  <i class="fa fa-cart-plus"></i>Cart
+                </a>
+            </li> 
+      <li class="nav-item"><a class="nav-link" href="/logout"><i class="glyphicon glyphicon-log-in"></i> LogOut</a></li>
+    </ul>
+
+			</div>
+		</div>
+	</nav> -->
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="index.html">TEAM-B</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	          <li class="nav-item"><a th:href="@{/user/}" class="nav-link">Home</a></li>
+	          <!-- <li class="nav-item dropdown active">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catalog</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown04">
+              	<a class="dropdown-item" href="shop.html">Shop</a>
+                <a class="dropdown-item" href="product-single.html">Single Product</a>
+                <a class="dropdown-item" href="cart.html">Cart</a>
+                <a class="dropdown-item" href="checkout.html">Checkout</a>
+              </div>
+            </li> -->
+            	<li class="nav-item"><a th:href="@{/user/addTocart}" class="nav-link">Cart</a></li>
+	          
+	          <li class="nav-item"><a href="/logout" class="nav-link">Log Out</a></li>
+	          
+
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+<!-- Carousel -->
+<div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+  <!-- Indicators/dots -->
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+  </div>
+  
+  <!-- The slideshow/carousel -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="https://pixelz.cc/wp-content/uploads/2018/10/apple-ipad-pro-uhd-4k-wallpaper.jpg" alt="Los Angeles" class="d-block" style="width:100%">
+      <div class="carousel-caption">
+        <h2>Apple iPad Pro</h2>
+        <p>Now at Rs.60000/-!</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://www.apple.com/newsroom/images/product/iphone/standard/Apple_iPhone-13-Pro_New-Camera-System_09142021_Full-Bleed-Image.jpg.slideshow-xlarge.jpg" alt="Chicago" class="d-block" style="width:100%">
+      <div class="carousel-caption">
+        <h3>iPhone 13 Pro</h3>
+        <p>Now at Rs.90000/-!</p>
+      </div> 
+    </div>
+    <div class="carousel-item">
+      <img src="https://cdn.mos.cms.futurecdn.net/Vd39p5hnAR9pY8fnUme5a4.jpg" alt="New York" class="d-block" style="width:100%">
+      <div class="carousel-caption">
+        <h3>iMac 2021</h3>
+        <p>Now at Rs.129999/-!</p>
+      </div>  
+    </div>
+  </div>
+  
+  <!-- Left and right controls/icons -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+
+<!-- <div class="container-fluid pt-5">
+        <div class="row px-xl-5 pb-3">
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fa fa-check text-primary m-0 mr-3"></h1>
+                    <h5 class="font-weight-semi-bold m-0">Quality Product</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fa fa-shipping-fast text-primary m-0 mr-2"></h1>
+                    <h5 class="font-weight-semi-bold m-0">Free Shipping</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
+                    <h5 class="font-weight-semi-bold m-0">14-Day Return</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fa fa-phone-volume text-primary m-0 mr-3"></h1>
+                    <h5 class="font-weight-semi-bold m-0">24/7 Support</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+ -->
+ 
+ 
+     <!-- Featured End -->
+
+<section class="ftco-section ftco-no-pt ftco-no-pb">
+			<div class="container">
+				<div class="row no-gutters ftco-services">
+          <div class="col-lg-4 text-center d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services p-4 py-md-5">
+              <div class="icon d-flex justify-content-center align-items-center mb-4">
+            		<!-- <span class="flaticon-bag"></span> -->
+              </div>
+              <div class="media-body">
+                <h3 class="heading">Free Shipping</h3>
+                <p>We provide free shipping of products with T&C applied.</p>
+              </div>
+            </div>      
+          </div>
+          <div class="col-lg-4 text-center d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services p-4 py-md-5">
+              <div class="icon d-flex justify-content-center align-items-center mb-4">
+            		<!-- <span class="flaticon-customer-service"></span> -->
+              </div>
+              <div class="media-body">
+                <h3 class="heading">Support Customer</h3>
+                <p>We provide 24/7 on call support to customers.</p>
+              </div>
+            </div>    
+          </div>
+          <div class="col-lg-4 text-center d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services p-4 py-md-5">
+              <div class="icon d-flex justify-content-center align-items-center mb-4">
+            		<!-- <span class="flaticon-payment-security"></span> -->
+              </div>
+              <div class="media-body">
+                <h3 class="heading">Good Quality</h3>
+                <p>We assure that products that we deliver are of very good quality.</p>
+              </div>
+            </div>      
+          </div>
+        </div>
+			</div>
+		</section>
+
+<!-- Changes -->
+<!-- <section class="ftco-section bg-light">
+    	<div class="container">
+				    	</div>
+    </section> -->
+
+<!-- Changes end -->
+
+<div class="row">
+<div class="col-lg-4" th:each="product:${products}">
+<div class="card" style="width: 18rem;">
+  <img src="https://th.bing.com/th/id/R.a387108e6a66abc8559fa3f761d8da59?rik=lZXABd6kPOYwmQ&riu=http%3a%2f%2fcdn1.expertreviews.co.uk%2fsites%2fexpertreviews%2ffiles%2f2018%2f07%2fapple_macbook_pro_review.jpg&ehk=KMDCgcsJ7vXwesl1cllZ2OK%2fJ5%2fUUvSOSX%2bwtCVNFE8%3d&risl=&pid=ImgRaw&r=0" class="card-img-top" alt="Shirt">
+  <div class="card-body" >
+    <h5 class="card-title" th:text="${product.productName}"></h5>
+    <p class="card-text" th:text="${product.productDescription}"></p>
+    <a class="btn btn-primary" th:href="@{/user/addToViewById/{id}(id=${product.productId})}">View</a>
+  </div>
+</div>
+</div>
+<br>
+</div>
+]
+    <section class="ftco-section ftco-choose ftco-no-pb ftco-no-pt">
+    	<div class="container">
+				<div class="row no-gutters">
+					<div class="col-lg-4">
+						<div class="choose-wrap divider-one img p-5 d-flex align-items-end" style="background-image: url(https://cdn.mos.cms.futurecdn.net/KhPnpYcKr3i2fMkWRKBKch-1200-80.jpg);">
+
+    					<div class="text text-center text-white px-2">
+								<span class="subheading">MacBook Air</span>
+    						<h2>MacBook Collection</h2>
+    						
+    						<p><a href="#" class="btn btn-black px-3 py-2">Shop now</a></p>
+    					</div>
+    				</div>
+					</div>
+					<div class="col-lg-8">
+    				<div class="row no-gutters choose-wrap divider-two align-items-stretch">
+    					<div class="col-md-12">
+	    					<div class="choose-wrap full-wrap img align-self-stretch d-flex align-item-center justify-content-end" style="background-image: url(https://i.pinimg.com/originals/7d/be/11/7dbe1127376cc0fe3e3feffba9c181bd.jpg);">
+	    						<div class="col-md-7 d-flex align-items-center">
+	    							<div class="text text-white px-5">
+	    								<span class="subheading">MacBook Pro</span>
+			    						<h2 >MacBook Pro Collection</h2>
+			    						
+			    						<p><a href="#" class="btn btn-black px-3 py-2">Shop now</a></p>
+			    					</div>
+	    						</div>
+	    					</div>
+	    				</div>
+    					<div class="col-md-12">
+    						<div class="row no-gutters">
+    							<div class="col-md-6">
+		    						<div class="choose-wrap wrap img align-self-stretch bg-light d-flex align-items-center">
+		    							<div class="text text-center px-5">
+		    								<span class="subheading">Summer Sale</span>
+				    						<h2>Extra 50% Off</h2>
+				    						<p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+				    						<p><a href="#" class="btn btn-black px-3 py-2">Shop now</a></p>
+				    					</div>
+		    						</div>
+	    						</div>
+	    						<div class="col-md-6">
+		    						<div class="choose-wrap wrap img align-self-stretch d-flex align-items-center" style="background-image: url(https://th.bing.com/th/id/OIP.lATTzz6KoVejLlZtsKLbPwHaHa?w=196&h=196&c=7&r=0&o=5&dpr=1.5&pid=1.7);">
+		    							<div class="text text-center text-white px-5">
+		    								<span class="subheading">MacBook</span>
+				    	
+				    						<p><a href="#" class="btn btn-black px-3 py-2">Shop now</a></p>
+				    					</div>
+		    						</div>
+	    						</div>
+	    					</div>
+    					</div>
+    				</div>
+    			</div>
+  			</div>
+    	</div>
+    </section>
+    
+    
+    
+   
+    
+<!-- Products -->
+ 
+   
+
+<!-- div class="container">
+<table class="table table-bordered table-hover" width="100%" cellpadding="10" cellspacing="0">
+
+
+
+<tr bgcolor="cyan">
+<th>productId</th>
+<th>productName</th>
+<th>productCost </th>
+<th>productQuantity</th>
+<th>productDescription</th>
+<th>Action</th>
+
+	
+
+</tr>
+
+
+
+
+
+<tr th:each="product:${products}">
+
+
+
+<th th:text="${product.productId}"></th>
+<th th:text="${product.productName}"></th>
+<th th:text="${product.productPrice}"></th>
+<th th:text="${product.productQuantity}"></th>
+<th th:text="${product.productDescription}"></th>
+<th><a th:href="@{/user/addToViewById/{id}(id=${product.productId})}" class="btn btn-danger">View</a>
+</th>
+
+</th>
+
+
+
+
+</tr>
+
+
+
+</table>
+</div> -->
+<footer class="ftco-footer ftco-section">
+      <div class="container">
+      	<div class="row">
+      		
+      	</div>
+        <div class="row mb-5">
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Niswakash</h2>
+              <p>Shop more</p>
+              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4 ml-md-5">
+              <h2 class="ftco-heading-2">Menu</h2>
+              <ul class="list-unstyled">
+                <li><a href="#" class="py-2 d-block">Shop</a></li>
+                <li><a href="#" class="py-2 d-block">About</a></li>
+                
+          
+              </ul>
+            </div>
+          </div>
+          <!-- <div class="col-md-4">
+             <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Help</h2>
+              <div class="d-flex">
+	              <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
+	                <li><a href="#" class="py-2 d-block">Shipping Information</a></li>
+	                <li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a></li>
+	                <li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
+	                <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
+	              </ul>
+	              <ul class="list-unstyled">
+	                <li><a href="#" class="py-2 d-block">FAQs</a></li>
+	                <li><a href="#" class="py-2 d-block">Contact</a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div> -->
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+            	<h2 class="ftco-heading-2">Have a Question?</h2>
+            	<div class="block-23 mb-3">
+	              <ul>
+	                
+	                <li><a href="#"><span class="glyphicon glyphicon-earphone"></span><span class="text">+91 9823458621</span></a></li>
+	                <li><a href="#"><span class="text">infoNiswakash@gmail.com</span></a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Shopping @ Niswakash
+						  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="/js/jquery.min.js"></script>
+  <script src="/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="/js/popper.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/jquery.easing.1.3.js"></script>
+  <script src="/js/jquery.waypoints.min.js"></script>
+  <script src="/js/jquery.stellar.min.js"></script>
+  <script src="/js/owl.carousel.min.js"></script>
+  <script src="/js/jquery.magnific-popup.min.js"></script>
+  <script src="/js/aos.js"></script>
+  <script src="/js/jquery.animateNumber.min.js"></script>
+  <script src="/js/bootstrap-datepicker.js"></script>
+  <script src="/js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="/js/google-map.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>
